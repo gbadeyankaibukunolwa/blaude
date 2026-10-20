@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0866ff">
+<meta name="description" content="BLAUDE — A digital studio building thoughtful technology, websites and brand experiences for forward-thinking businesses.">
+<title>BLAUDE — Technology for What Comes Next</title>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/manrope@5.0.20/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.18/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/instrument-serif@5.0.11/index.css">
+
+<style>
+:root{
+  --bg:#ffffff;
+  --bg-soft:#f6f8fc;
+  --bg-ink:#0a0f1c;
+  --text:#0a0f1c;
+  --text-2:#2a3346;
+  --muted:#6b7489;
+  --line:#e6eaf2;
+  --line-2:#d7dde8;
+  --blue:#0866ff;
+  --blue-hover:#0757d8;
+  --blue-soft:#eaf2ff;
+  --blue-glow:rgba(8,102,255,.12);
+  --max:1320px;
+  --radius:14px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Inter","Manrope",system-ui,-apple-system,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+img{display:block;max-width:100%}
+.serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-style:italic;letter-spacing:-.01em}
+.wrap{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
+@media(max-width:640px){.wrap{width:calc(100% - 32px)}}
+
+/* Typography */
+h1,h2,h3,h4{font-family:"Manrope",sans-serif;color:var(--text);letter-spacing:-.03em;line-height:1.05;font-weight:600}
+h1{font-size:clamp(44px,7.2vw,104px);letter-spacing:-.04em;font-weight:500}
+h2{font-size:clamp(30px,4.4vw,58px);font-weight:500}
+h3{font-size:clamp(20px,1.6vw,24px);font-weight:600}
+p{color:var(--text-2)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--blue);
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--blue);display:inline-block}
+.lead{font-size:clamp(16px,1.2vw,19px);color:var(--text-2);max-width:620px;line-height:1.55}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 22px;font-size:13px;font-weight:600;letter-spacing:.01em;
+  background:var(--text);color:#fff;border-radius:999px;
+  transition:all .3s var(--ease);border:1px solid var(--text);
+}
+.btn:hover{background:var(--blue);border-color:var(--blue);transform:translateY(-2px);box-shadow:0 10px 30px -10px var(--blue-glow)}
+.btn.primary{background:var(--blue);border-color:var(--blue)}
+.btn.primary:hover{background:var(--blue-hover);border-color:var(--blue-hover)}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--line-2)}
+.btn.ghost:hover{background:var(--bg-soft);border-color:var(--text);color:var(--text)}
+.btn .arrow{transition:transform .3s var(--ease)}
+.btn:hover .arrow{transform:translate(3px,-3px)}
+
+/* Header */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s var(--ease),background .3s var(--ease);
+}
+header.scrolled{border-bottom-color:var(--line);background:rgba(255,255,255,.88)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.brand-mark{
+  width:38px;height:38px;border-radius:10px;
+  background:linear-gradient(135deg,#0866ff 0%,#0a4fd6 100%);
+  display:grid;place-items:center;color:#fff;
+  box-shadow:0 6px 20px -6px rgba(8,102,255,.5);
+}
+.brand-mark svg{width:22px;height:22px}
+.brand-text{display:flex;flex-direction:column;line-height:1}
+.brand-name{font-family:"Manrope",sans-serif;font-size:17px;font-weight:700;letter-spacing:.18em}
+.brand-sub{font-size:9px;letter-spacing:.22em;color:var(--muted);margin-top:4px;font-weight:500}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{
+  font-size:13px;font-weight:500;color:var(--text-2);
+  padding:8px 14px;border-radius:999px;
+  transition:all .2s var(--ease);
+}
+.nav-links a:hover{color:var(--text);background:var(--bg-soft)}
+.nav-links a.active{color:var(--text);background:var(--bg-soft)}
+.nav-cta{display:flex;align-items:center;gap:10px}
+.nav-cta .btn{padding:10px 18px;font-size:12px}
+.menu-toggle{display:none;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);align-items:center;justify-content:center;color:var(--text)}
+@media(max-width:960px){
+  .nav-links{display:none;position:absolute;top:76px;left:0;right:0;background:#fff;flex-direction:column;align-items:stretch;padding:16px;border-bottom:1px solid var(--line);gap:2px}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:14px 16px;border-radius:10px;font-size:14px}
+  .menu-toggle{display:inline-flex}
+  .nav-cta .btn{display:none}
+}
+
+/* Page system */
+.page{display:none;animation:pageIn .5s var(--ease)}
+.page.active{display:block}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* HERO */
+.hero{padding:140px 0 60px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:end}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+.hero h1 span.line{display:block;overflow:hidden}
+.hero h1 span.line>span{display:inline-block;animation:rise .9s var(--ease) both}
+.hero h1 span.line:nth-child(2)>span{animation-delay:.1s}
+.hero h1 span.line:nth-child(3)>span{animation-delay:.2s}
+@keyframes rise{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.hero h1 .accent{color:var(--blue)}
+.hero-meta{display:flex;flex-direction:column;gap:24px;align-items:flex-end}
+@media(max-width:900px){.hero-meta{align-items:flex-start}}
+.hero-meta .lead{max-width:380px;text-align:right}
+@media(max-width:900px){.hero-meta .lead{text-align:left}}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.hero-stats{display:flex;gap:40px;margin-top:48px;padding-top:32px;border-top:1px solid var(--line);flex-wrap:wrap}
+.hero-stat .num{font-family:"Manrope",sans-serif;font-size:32px;font-weight:500;letter-spacing:-.02em;line-height:1}
+.hero-stat .lbl{font-size:12px;color:var(--muted);margin-top:6px;letter-spacing:.04em}
+
+/* Hero visual */
+.hero-visual{
+  position:relative;border-radius:var(--radius);overflow:hidden;
+  aspect-ratio:4/5;
+  box-shadow:0 40px 80px -30px rgba(10,15,28,.25);
+}
+.hero-visual img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.hero-visual:hover img{transform:scale(1.04)}
+.hero-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,15,28,.55) 100%)}
+.hero-badge{
+  position:absolute;left:24px;bottom:24px;z-index:2;
+  display:flex;align-items:center;gap:12px;color:#fff;
+}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:#3ddc97;box-shadow:0 0 0 4px rgba(61,220,151,.25);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(61,220,151,.25)}50%{box-shadow:0 0 0 8px rgba(61,220,151,0)}}
+.hero-badge span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+
+/* Marquee */
+.marquee{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:28px 0;overflow:hidden;white-space:nowrap;
+  background:var(--bg-soft);
+}
+.marquee-track{display:inline-flex;gap:60px;animation:scroll 40s linear infinite;padding-right:60px}
+.marquee-item{display:inline-flex;align-items:center;gap:60px;font-family:"Instrument Serif",serif;font-size:clamp(28px,3.4vw,44px);color:var(--text);letter-spacing:-.02em}
+.marquee-item::after{content:"✦";color:var(--blue);font-size:.6em}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Sections */
+.section{padding:120px 0;position:relative}
+@media(max-width:760px){.section{padding:80px 0}}
+.section-head{max-width:780px;margin-bottom:64px}
+.section-head h2{margin:18px 0 20px}
+.section-head p{font-size:17px}
+.section-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px}
+.section-label h3{font-size:14px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.section-label a{font-size:13px;color:var(--text);font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:color .2s}
+.section-label a:hover{color:var(--blue)}
+
+/* Work / Portfolio grid */
+.work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.work-card{
+  position:relative;border-radius:var(--radius);overflow:hidden;
+  background:var(--bg-soft);cursor:pointer;
+  transition:transform .5s var(--ease);
+}
+.work-card:hover{transform:translateY(-4px)}
+.work-card .media{aspect-ratio:4/3;overflow:hidden;background:#e6eaf2}
+.work-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.work-card:hover img{transform:scale(1.05)}
+.work-card .info{padding:22px 24px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.work-card h3{font-size:20px;font-weight:600;letter-spacing:-.01em}
+.work-card .tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.work-card .arrow-circle{
+  width:38px;height:38px;border-radius:50%;background:var(--text);color:#fff;
+  display:grid;place-items:center;flex-shrink:0;
+  transition:all .3s var(--ease);
+}
+.work-card:hover .arrow-circle{background:var(--blue);transform:rotate(-45deg)}
+.work-card.large{grid-column:span 7}
+.work-card.small{grid-column:span 5}
+.work-card.half{grid-column:span 6}
+.work-card.third{grid-column:span 4}
+@media(max-width:900px){
+  .work-card.large,.work-card.small,.work-card.half,.work-card.third{grid-column:span 12}
+}
+
+/* Services */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.service{
+  background:#fff;padding:40px 32px;
+  transition:background .3s var(--ease);
+  position:relative;
+}
+.service:hover{background:var(--bg-soft)}
+.service .num{font-family:"Instrument Serif",serif;font-size:14px;color:var(--blue);font-style:italic;margin-bottom:24px;display:block}
+.service h3{margin-bottom:14px;font-size:22px}
+.service p{font-size:14.5px;line-height:1.6}
+.service ul{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:8px}
+.service ul li{font-size:13px;color:var(--text-2);display:flex;align-items:center;gap:10px}
+.service ul li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--blue)}
+@media(max-width:900px){.services-grid{grid-template-columns:1fr}}
+
+/* Process */
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;counter-reset:step}
+.process-step{position:relative;padding-top:32px;border-top:1px solid var(--line)}
+.process-step::before{
+  counter-increment:step;content:"0" counter(step);
+  font-family:"Instrument Serif",serif;font-style:italic;
+  font-size:14px;color:var(--blue);
+  position:absolute;top:-10px;left:0;background:#fff;padding-right:8px;
+}
+.process-step h3{font-size:18px;margin:12px 0 10px}
+.process-step p{font-size:14px;color:var(--muted)}
+@media(max-width:900px){.process{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.process{grid-template-columns:1fr}}
+
+/* Split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.split.reverse{direction:rtl}
+.split.reverse>*{direction:ltr}
+.split-media{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/5}
+.split-media img{width:100%;height:100%;object-fit:cover}
+.split-content h2{margin:18px 0 24px}
+.split-content p+p{margin-top:16px}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:40px}.split.reverse{direction:ltr}}
+
+/* Stats band */
+.stats-band{
+  background:var(--bg-ink);color:#fff;border-radius:var(--radius);
+  padding:80px 60px;margin:0 24px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:40px;
+  position:relative;overflow:hidden;
+}
+.stats-band::before{
+  content:"";position:absolute;top:-50%;right:-20%;width:600px;height:600px;
+  background:radial-gradient(circle,var(--blue-glow) 0%,transparent 60%);
+  pointer-events:none;
+}
+.stat{position:relative;z-index:1}
+.stat .num{font-family:"Manrope",sans-serif;font-size:clamp(40px,4.5vw,64px);font-weight:500;letter-spacing:-.03em;line-height:1;color:#fff}
+.stat .num span{color:var(--blue)}
+.stat .lbl{font-size:13px;color:rgba(255,255,255,.6);margin-top:12px;letter-spacing:.02em}
+@media(max-width:900px){.stats-band{grid-template-columns:repeat(2,1fr);padding:50px 32px;margin:0 16px}}
+
+/* Innovation */
+.innovation-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.innovation-card{
+  position:relative;border-radius:var(--radius);overflow:hidden;
+  aspect-ratio:16/11;cursor:pointer;
+}
+.innovation-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.innovation-card:hover img{transform:scale(1.05)}
+.innovation-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(10,15,28,.85) 100%)}
+.innovation-card .content{position:absolute;left:0;right:0;bottom:0;padding:32px;color:#fff;z-index:1}
+.innovation-card .num{font-family:"Instrument Serif",serif;font-style:italic;font-size:14px;color:rgba(255,255,255,.7);margin-bottom:10px;display:block}
+.innovation-card h3{color:#fff;font-size:26px;margin-bottom:10px}
+.innovation-card p{color:rgba(255,255,255,.8);font-size:14px;max-width:420px}
+@media(max-width:760px){.innovation-grid{grid-template-columns:1fr}}
+
+/* CTA */
+.cta{
+  background:var(--bg-ink);color:#fff;border-radius:var(--radius);
+  padding:100px 60px;margin:0 24px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.cta::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(600px 300px at 20% 0%,rgba(8,102,255,.25),transparent 60%),
+    radial-gradient(600px 300px at 80% 100%,rgba(8,102,255,.18),transparent 60%);
+  pointer-events:none;
+}
+.cta>*{position:relative;z-index:1}
+.cta .eyebrow{color:#7fb0ff}
+.cta .eyebrow::before{background:#7fb0ff}
+.cta h2{color:#fff;margin:20px auto 24px;max-width:800px}
+.cta p{color:rgba(255,255,255,.7);max-width:560px;margin:0 auto 36px;font-size:17px}
+.cta .btn.primary{background:#fff;color:var(--text);border-color:#fff}
+.cta .btn.primary:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+@media(max-width:760px){.cta{padding:70px 28px;margin:0 16px}}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:start}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:50px}}
+.contact-info h2{margin:18px 0 24px}
+.contact-info .lead{margin-bottom:40px}
+.contact-block{border-top:1px solid var(--line);padding:24px 0;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.contact-block:last-child{border-bottom:1px solid var(--line)}
+.contact-block .lbl{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.contact-block a{font-size:16px;color:var(--text);font-weight:500;transition:color .2s}
+.contact-block a:hover{color:var(--blue)}
+
+form{display:grid;gap:20px;background:var(--bg-soft);padding:40px;border-radius:var(--radius);border:1px solid var(--line)}
+.field{display:grid;gap:8px}
+.field label{font-size:12px;font-weight:600;color:var(--text);letter-spacing:.02em}
+.field input,.field textarea,.field select{
+  width:100%;padding:14px 16px;background:#fff;
+  border:1px solid var(--line);border-radius:10px;
+  font-size:14.5px;color:var(--text);
+  transition:border-color .2s,box-shadow .2s;
+}
+.field input:focus,.field textarea:focus,.field select:focus{
+  outline:none;border-color:var(--blue);
+  box-shadow:0 0 0 4px var(--blue-glow);
+}
+.field textarea{min-height:140px;resize:vertical;font-family:inherit}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:540px){.field-row{grid-template-columns:1fr}}
+.form-note{font-size:12px;color:var(--muted);margin-top:4px}
+.form-status{padding:14px 16px;background:var(--blue-soft);border-radius:10px;font-size:13px;color:var(--blue);display:none}
+.form-status.show{display:block}
+
+/* Footer */
+footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:80px 0 32px;margin-top:80px}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:60px;padding-bottom:60px;border-bottom:1px solid var(--line)}
+.footer-brand p{margin-top:20px;font-size:14px;max-width:340px;color:var(--muted)}
+.footer-col h4{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:20px}
+.footer-col ul{list-style:none;display:grid;gap:12px}
+.footer-col a{font-size:14px;color:var(--text-2);transition:color .2s}
+.footer-col a:hover{color:var(--blue)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;flex-wrap:wrap;gap:16px}
+.footer-bottom p{font-size:12px;color:var(--muted)}
+.footer-bottom .socials{display:flex;gap:10px}
+.footer-bottom .socials a{
+  width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+  display:grid;place-items:center;color:var(--text-2);
+  transition:all .2s;
+}
+.footer-bottom .socials a:hover{background:var(--text);color:#fff;border-color:var(--text)}
+@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr;gap:40px}.footer-brand{grid-column:span 2}}
+@media(max-width:540px){.footer-top{grid-template-columns:1fr}.footer-brand{grid-column:span 1}}
+
+/* Reveal on scroll */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* Selection */
+::selection{background:var(--blue);color:#fff}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--bg-soft)}
+::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:10px}
+::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+
+<body>
+
+<!-- Logo symbol -->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+<symbol id="blaude-mark" viewBox="0 0 160 160">
+ <g fill="currentColor">
+  <path d="M76 8 C99 15 105 37 98 64 C96 71 92 75 85 67 C75 53 73 31 76 8Z"/>
+  <path d="M133 25 C139 48 125 67 102 78 C95 81 89 80 92 70 C99 52 115 36 133 25Z"/>
+  <path d="M152 76 C145 99 123 105 96 98 C89 96 85 92 93 85 C107 75 129 73 152 76Z"/>
+  <path d="M135 134 C112 140 93 125 82 102 C79 95 80 89 90 92 C108 99 124 116 135 134Z"/>
+  <path d="M84 152 C61 145 55 123 62 96 C64 89 68 85 75 93 C85 107 87 129 84 152Z"/>
+  <path d="M27 135 C21 112 35 93 58 82 C65 79 71 80 68 90 C61 108 45 124 27 135Z"/>
+  <path d="M8 84 C15 61 37 55 64 62 C71 64 75 68 67 75 C53 85 31 87 8 84Z"/>
+  <path d="M25 27 C48 21 67 35 78 58 C81 65 80 71 70 68 C52 61 36 45 25 27Z"/>
+ </g>
+</symbol>
+</svg>
+
+<header id="siteHeader">
+ <div class="wrap nav">
+  <a class="brand" href="#home" onclick="showPage('home')" aria-label="BLAUDE home">
+   <span class="brand-mark"><svg viewBox="0 0 160 160" aria-hidden="true"><use href="#blaude-mark"/></svg></span>
+   <span class="brand-text">
+    <span class="brand-name">BLAUDE</span>
+    <span class="brand-sub">DIGITAL · TECHNOLOGY</span>
+   </span>
+  </a>
+  <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+   <a href="#home" data-page="home" class="active">Home</a>
+   <a href="#company" data-page="company">Company</a>
+   <a href="#services" data-page="services">Services</a>
+   <a href="#innovation" data-page="innovation">Innovation</a>
+   <a href="#portfolio" data-page="portfolio">Work</a>
+   <a href="#about" data-page="about">About</a>
+  </nav>
+  <div class="nav-cta">
+   <a href="#contact" class="btn primary" onclick="showPage('contact')">Start a project <span class="arrow">↗</span></a>
+   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+   </button>
+  </div>
+ </div>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section class="page active" id="home">
+ <div class="wrap hero">
+  <div class="hero-grid">
+   <div>
+    <span class="eyebrow">Digital studio · Est. 2024</span>
+    <h1 style="margin-top:28px">
+     <span class="line"><span>Building technology</span></span>
+     <span class="line"><span>for <em class="serif accent" style="font-style:italic">what comes</em></span></span>
+     <span class="line"><span><em class="serif accent" style="font-style:italic">next.</em></span></span>
+    </h1>
+    <div class="hero-actions">
+     <a class="btn primary" href="#services" onclick="showPage('services')">Explore capabilities <span class="arrow">↗</span></a>
+     <a class="btn ghost" href="#portfolio" onclick="showPage('portfolio')">View selected work</a>
+    </div>
+   </div>
+   <div class="hero-meta">
+    <p class="lead">BLAUDE is a digital studio helping ambitious businesses shape clearer brands, sharper websites and more useful technology — built around real outcomes.</p>
+    <div class="hero-stats">
+     <div class="hero-stat"><div class="num">40<span style="color:var(--blue)">+</span></div><div class="lbl">Projects delivered</div></div>
+     <div class="hero-stat"><div class="num">12</div><div class="lbl">Industries served</div></div>
+     <div class="hero-stat"><div class="num">98<span style="color:var(--blue)">%</span></div><div class="lbl">Client retention</div></div>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <div class="wrap" style="margin-top:60px">
+  <div class="hero-visual">
+   <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85" alt="BLAUDE studio workspace">
+   <div class="hero-badge"><span class="dot"></span><span>Currently accepting Q4 projects</span></div>
+  </div>
+ </div>
+
+ <div class="marquee" style="margin-top:80px">
+  <div class="marquee-track">
+   <span class="marquee-item">Web Development</span>
+   <span class="marquee-item">Brand Systems</span>
+   <span class="marquee-item">Product Design</span>
+   <span class="marquee-item">Digital Strategy</span>
+   <span class="marquee-item">Web Applications</span>
+   <span class="marquee-item">Automation</span>
+   <span class="marquee-item">Web Development</span>
+   <span class="marquee-item">Brand Systems</span>
+   <span class="marquee-item">Product Design</span>
+   <span class="marquee-item">Digital Strategy</span>
+   <span class="marquee-item">Web Applications</span>
+   <span class="marquee-item">Automation</span>
+  </div>
+ </div>
+
+ <!-- Featured work -->
+ <div class="wrap section">
+  <div class="section-label reveal">
+   <h3>Selected work — 2024 / 2025</h3>
+   <a href="#portfolio" onclick="showPage('portfolio')">View all projects →</a>
+  </div>
+  <div class="work-grid">
+   <article class="work-card large reveal">
+    <div class="media"><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1400&q=85" alt="Forme Skin project"></div>
+    <div class="info">
+     <div><div class="tag">Beauty · E-commerce</div><h3>Forme Skin</h3></div>
+     <div class="arrow-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+   </article>
+   <article class="work-card small reveal">
+    <div class="media"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85" alt="Signal Desk project"></div>
+    <div class="info">
+     <div><div class="tag">SaaS · Dashboard</div><h3>Signal Desk</h3></div>
+     <div class="arrow-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+   </article>
+   <article class="work-card small reveal">
+    <div class="media"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85" alt="Atlas Living project"></div>
+    <div class="info">
+     <div><div class="tag">Property · Brand</div><h3>Atlas Living</h3></div>
+     <div class="arrow-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+   </article>
+   <article class="work-card large reveal">
+    <div class="media"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=85" alt="Northline Studio project"></div>
+    <div class="info">
+     <div><div class="tag">Professional services · Website</div><h3>Northline Studio</h3></div>
+     <div class="arrow-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+    </div>
+   </article>
+  </div>
+ </div>
+
+ <!-- Services preview -->
+ <div class="wrap section">
+  <div class="section-head reveal">
+   <span class="eyebrow">What we do</span>
+   <h2 style="margin-top:18px">A studio built around <em class="serif">craft, clarity</em> and outcomes.</h2>
+   <p style="margin-top:20px">We partner with founders and teams to design, build and ship digital products and brand experiences that move the business forward.</p>
+  </div>
+  <div class="services-grid reveal">
+   <div class="service">
+    <span class="num">01 / Web</span>
+    <h3>Website Development</h3>
+    <p>Modern, responsive websites engineered for performance, clarity and conversion.</p>
+    <ul><li>Marketing sites</li><li>Landing pages</li><li>CMS integration</li><li>Performance tuning</li></ul>
+   </div>
+   <div class="service">
+    <span class="num">02 / Product</span>
+    <h3>Web Applications</h3>
+    <p>Digital tools and dashboards designed around real workflows and measurable outcomes.</p>
+    <ul><li>Product strategy</li><li>Interface design</li><li>Prototyping</li><li>Full-stack builds</li></ul>
+   </div>
+   <div class="service">
+    <span class="num">03 / Brand</span>
+    <h3>Design Systems</h3>
+    <p>Visual identity and design systems that keep every touchpoint consistent and unmistakable.</p>
+    <ul><li>Identity design</li><li>Typography systems</li><li>Component libraries</li><li>Guidelines</li></ul>
+   </div>
+  </div>
+  <div style="margin-top:32px;text-align:center">
+   <a class="btn ghost" href="#services" onclick="showPage('services')">See all capabilities <span class="arrow">→</span></a>
+  </div>
+ </div>
+
+ <!-- Stats -->
+ <div class="stats-band reveal">
+  <div class="stat"><div class="num">08<span>+</span></div><div class="lbl">Years combined experience across the studio</div></div>
+  <div class="stat"><div class="num">2.4<span>x</span></div><div class="lbl">Average uplift in qualified enquiries</div></div>
+  <div class="stat"><div class="num">98<span>%</span></div><div class="lbl">On-time delivery across engagements</div></div>
+  <div class="stat"><div class="num">24<span>/7</span></div><div class="lbl">Support and iteration after launch</div></div>
+ </div>
+
+ <!-- Approach -->
+ <div class="wrap section">
+  <div class="section-head reveal">
+   <span class="eyebrow">Our approach</span>
+   <h2 style="margin-top:18px">Four steps from idea <em class="serif">to launch.</em></h2>
+   <p style="margin-top:20px">A simple, transparent process that keeps decisions grounded in the problem — and the people it affects.</p>
+  </div>
+  <div class="process reveal">
+   <div class="process-step"><h3>Discover</h3><p>We listen first. Understand the business, the customers, the constraints and the real goal behind the brief.</p></div>
+   <div class="process-step"><h3>Define</h3><p>We translate that understanding into a clear direction — scope, structure, success metrics and a realistic roadmap.</p></div>
+   <div class="process-step"><h3>Design</h3><p>We shape the experience, the interface and the system — testing assumptions early with prototypes and feedback.</p></div>
+   <div class="process-step"><h3>Deliver</h3><p>We build, review and launch with care — then stay close to iterate, measure and improve what matters.</p></div>
+  </div>
+ </div>
+
+ <!-- CTA -->
+ <div class="cta reveal">
+  <span class="eyebrow">Let's build together</span>
+  <h2>Have a project in mind? <em class="serif">Let's make it real.</em></h2>
+  <p>Tell us about your business and what you're trying to achieve. We'll come back with a clear next step — usually within one working day.</p>
+  <a class="btn primary" href="#contact" onclick="showPage('contact')">Start a conversation <span class="arrow">↗</span></a>
+ </div>
+</section>
+
+<!-- COMPANY -->
+<section class="page" id="company">
+ <div class="wrap hero" style="padding-bottom:40px">
+  <span class="eyebrow">Company</span>
+  <h1 style="margin-top:24px">A studio shaped by <em class="serif accent" style="font-style:italic">curiosity</em><br>and guided by <em class="serif accent" style="font-style:italic">purpose.</em></h1>
+  <p class="lead" style="margin-top:28px">BLAUDE is an independent digital studio working with founders, operators and teams who care about the details — because the details are what make the product.</p>
+ </div>
+ <div class="wrap section">
+  <div class="split">
+   <div class="split-media reveal"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85" alt="BLAUDE studio"></div>
+   <div class="split-content reveal">
+    <span class="eyebrow">Our mission</span>
+    <h2>Help businesses move forward <em class="serif">with digital that works.</em></h2>
+    <p>We believe a website or product should do more than look good — it should explain what a business does, why it matters, and make it easy for the right people to take the next step.</p>
+    <p>Our work sits at the intersection of strategy, design and engineering. We keep teams small, communication direct, and outcomes measurable.</p>
+    <div class="hero-actions"><a class="btn ghost" href="#about" onclick="showPage('about')">How we work →</a></div>
+   </div>
+  </div>
+ </div>
+ <div class="wrap section">
+  <div class="section-head reveal">
+   <span class="eyebrow">Principles</span>
+   <h2 style="margin-top:18px">What guides <em class="serif">every decision.</em></h2>
+  </div>
+  <div class="services-grid reveal">
+   <div class="service"><span class="num">01</span><h3>Purpose first</h3><p>Understand the business problem before choosing the technology, the layout or the typeface.</p></div>
+   <div class="service"><span class="num">02</span><h3>People matter</h3><p>Design for the humans on the other side of the screen — their time, attention and trust.</p></div>
+   <div class="service"><span class="num">03</span><h3>Quality in detail</h3><p>The small things — spacing, motion, copy — are what separate good from genuinely great.</p></div>
+   <div class="service"><span class="num">04</span><h3>Continuous learning</h3><p>Explore new tools and ideas, but only adopt what creates real value for the work.</p></div>
+   <div class="service"><span class="num">05</span><h3>Clear communication</h3><p>No jargon, no surprises. Honest updates, readable plans, and decisions we can defend.</p></div>
+   <div class="service"><span class="num">06</span><h3>Long-term thinking</h3><p>Build systems that scale with the business — not just for the launch week.</p></div>
+  </div>
+ </div>
+ <div class="cta reveal" style="margin-top:40px">
+  <span class="eyebrow">Work with us</span>
+  <h2>Looking for a studio that <em class="serif">actually listens?</em></h2>
+  <p>We take on a small number of projects each quarter so we can give each one the attention it deserves.</p>
+  <a class="btn primary" href="#contact" onclick="showPage('contact')">Start a conversation <span class="arrow">↗</span></a>
+ </div>
+</section>
+
+<!-- SERVICES -->
+<section class="page" id="services">
+ <div class="wrap hero" style="padding-bottom:40px">
+  <span class="eyebrow">Services & capabilities</span>
+  <h1 style="margin-top:24px">Design, build and ship <em class="serif accent" style="font-style:italic">useful</em> digital work.</h1>
+  <p class="lead" style="margin-top:28px">From first sketch to launched product — a complete set of capabilities under one roof, led by the same team.</p>
+ </div>
+ <div class="wrap section">
+  <div class="services-grid reveal">
+   <div class="service">
+    <span class="num">01 / Development</span>
+    <h3>Website Development</h3>
+    <p>Professional business websites, landing pages and responsive web experiences engineered for speed and clarity.</p>
+    <ul><li>Marketing websites</li><li>Landing pages</li><li>CMS integration</li><li>Responsive engineering</li></ul>
+   </div>
+   <div class="service">
+    <span class="num">02 / Design</span>
+    <h3>UI/UX & Digital Design</h3>
+    <p>Clear layouts and user experiences that make products and services easier to understand and use.</p>
+    <ul><li>Interface design</li><li>Information architecture</li><li>User journey mapping</li><li>Design systems</li></ul>
+   </div>
+   <div class="service">
+    <span class="num">03 / Product</span>
+    <h3>Web Applications</h3>
+    <p>Plan and develop digital tools around specific business processes, dashboards and internal workflows.</p>
+    <ul><li>Product strategy</li><li>Dashboard interfaces</li><li>Prototyping</li><li>Full-stack development</li></ul>
+   </div>
+   <div class="service">
+    <span class="num">04 / Strategy</span>
+    <h3>Digital Strategy</h3>
+    <p>Identify opportunities to improve online presence, customer journeys and digital communication.</p>
+    <ul><li>Digital audits</li><li>Website planning</li><li>Customer journey mapping</li><li>Project roadmaps</li></ul>
+   </div>
+   <div class="service">
+    <span class="num">05 / Automation</span>
+    <h3>Workflow Solutions</h3>
+    <p>Practical ways to organise work, reduce repetitive tasks and connect the tools your team already uses.</p>
+    <ul><li>Process reviews</li><li>Integration design</li><li>Automation opportunities</li><li>Internal tooling</li></ul>
+   </div>
+   <div class="service">
+    <span class="num">06 / Optimisation</span>
+    <h3>Website Improvement</h3>
+    <p>Improve existing digital experiences with focused changes aligned to business priorities and user data.</p>
+    <ul><li>Mobile usability</li><li>Navigation redesign</li><li>Content structure</li><li>Performance tuning</li></ul>
+   </div>
+  </div>
+ </div>
+ <div class="wrap section">
+  <div class="split reverse">
+   <div class="split-media reveal"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=85" alt="Team collaborating"></div>
+   <div class="split-content reveal">
+    <span class="eyebrow">Engagements</span>
+    <h2>How we work <em class="serif">with you.</em></h2>
+    <p>Most projects begin with a short discovery conversation. From there we shape a scope that matches your goals, timeline and budget — no unnecessary complexity.</p>
+    <ul class="list" style="list-style:none;margin-top:24px;display:grid;gap:12px">
+     <li style="display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line)"><span style="color:var(--blue);font-weight:600">→</span><span><strong>Discovery call</strong> — 30 minutes, no commitment</span></li>
+     <li style="display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line)"><span style="color:var(--blue);font-weight:600">→</span><span><strong>Proposal</strong> — clear scope, timeline and fixed or capped fee</span></li>
+     <li style="display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line)"><span style="color:var(--blue);font-weight:600">→</span><span><strong>Delivery</strong> — weekly updates, shared workspace, no surprises</span></li>
+     <li style="display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><span style="color:var(--blue);font-weight:600">→</span><span><strong>Support</strong> — ongoing iteration after launch</span></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="cta reveal">
+  <span class="eyebrow">Have a challenge worth solving?</span>
+  <h2>Tell us what you're <em class="serif">building.</em></h2>
+  <p>We'll come back with honest thoughts on how we can help — and whether we're the right fit.</p>
+  <a class="btn primary" href="#contact" onclick="showPage('contact')">Talk to BLAUDE <span class="arrow">↗</span></a>
+ </div>
+</section>
+
+<!-- INNOVATION -->
+<section class="page" id="innovation">
+ <div class="wrap hero" style="padding-bottom:40px">
+  <span class="eyebrow">Innovation lab</span>
+  <h1 style="margin-top:24px">Exploring what technology <em class="serif accent" style="font-style:italic">can make possible.</em></h1>
+  <p class="lead" style="margin-top:28px">A space for research, experiments and prototypes — exploring the intersection of design, software and emerging technology.</p>
+ </div>
+ <div class="wrap section">
+  <div class="innovation-grid">
+   <article class="innovation-card reveal">
+    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85" alt="Research">
+    <div class="content">
+     <span class="num">01 / Research</span>
+     <h3>Understand the opportunity</h3>
+     <p>Study business needs and identify problems where digital tools could provide measurable value.</p>
+    </div>
+   </article>
+   <article class="innovation-card reveal">
+    <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1400&q=85" alt="Design exploration">
+    <div class="content">
+     <span class="num">02 / Design</span>
+     <h3>Explore different approaches</h3>
+     <p>Consider alternative interfaces, interactions and experiences before committing to a direction.</p>
+    </div>
+   </article>
+   <article class="innovation-card reveal">
+    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=85" alt="Experiments">
+    <div class="content">
+     <span class="num">03 / Experiments</span>
+     <h3>Learn through building</h3>
+     <p>Use prototypes and small experiments to test assumptions and learn from practical results.</p>
+    </div>
+   </article>
+   <article class="innovation-card reveal">
+    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=85" alt="The future">
+    <div class="content">
+     <span class="num">04 / The future</span>
+     <h3>Keep the outcome in focus</h3>
+     <p>Explore new technologies without losing sight of the people and problems they should serve.</p>
+    </div>
+   </article>
+  </div>
+  <p class="form-status show" style="margin-top:32px;background:var(--bg-soft);color:var(--muted)">These are BLAUDE's areas of exploration — not claims of launched research programmes or completed products.</p>
+ </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="page" id="portfolio">
+ <div class="wrap hero" style="padding-bottom:40px">
+  <span class="eyebrow">Selected work</span>
+  <h1 style="margin-top:24px">Digital ideas, <em class="serif accent" style="font-style:italic">made visible.</em></h1>
+  <p class="lead" style="margin-top:28px">A selection of recent projects and concept work across brand, web and product — showing how BLAUDE approaches structure, craft and experience.</p>
+ </div>
+ <div class="wrap section">
+  <div class="work-grid">
+   <article class="work-card half reveal">
+    <div class="media"><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1400&q=85" alt="Forme Skin"></div>
+    <div class="info"><div><div class="tag">Beauty · E-commerce</div><h3>Forme Skin</h3></div><div class="arrow-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div></div>
+   </article>
+   <article class="work-card half reveal">
+    <div class="media"><img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1400&q=85" alt="Olea Botanics"></div>
+    <div class="info"><div><div class="tag">Beauty · Brand</div><h3>Olea Botanics</h3></div><div class="arrow-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div></div>
+   </article>
+   <article class="work-card third reveal">
+    <div class="media"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85" alt="Northline Studio"></div>
+    <div class="info"><div><div class="tag">Services · Website</div><h3>Northline Studio</h3></div><div class="arrow-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div></div>
+   </article>
+   <article class="work-card third reveal">
+    <div class="media"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85" alt="Signal Desk"></div>
+    <div class="info"><div><div class="tag">SaaS · Dashboard</div><h3>Signal Desk</h3></div><div class="arrow-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div></div>
+   </article>
+   <article class="work-card third reveal">
+    <div class="media"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85" alt="Atlas Living"></div>
+    <div class="info"><div><div class="tag">Property · Brand</div><h3>Atlas Living</h3></div><div class="arrow-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div></div>
+   </article>
+   <article class="work-card half reveal">
+    <div class="media"><img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1400&q=85" alt="Clearpath"></div>
+    <div class="info"><div><div class="tag">Product · Concept</div><h3>Clearpath</h3></div><div class="arrow-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div></div>
+   </article>
+   <article class="work-card half reveal">
+    <div class="media"><img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1400&q=85" alt="Meridian"></div>
+    <div class="info"><div><div class="tag">Finance · Platform</div><h3>Meridian Capital</h3></div><div class="arrow-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></div></div>
+   </article>
+  </div>
+  <p class="form-status show" style="margin-top:32px;background:var(--bg-soft);color:var(--muted)">Selected concepts and illustrative directions. Real client work is shared under NDA and available on request.</p>
+ </div>
+ <div class="cta reveal">
+  <span class="eyebrow">Your project next</span>
+  <h2>Let's make your next idea <em class="serif">real.</em></h2>
+  <p>We're currently booking projects for the next quarter. Tell us what you're working on.</p>
+  <a class="btn primary" href="#contact" onclick="showPage('contact')">Discuss a project <span class="arrow">↗</span></a>
+ </div>
+</section>
+
+<!-- ABOUT -->
+<section class="page" id="about">
+ <div class="wrap hero" style="padding-bottom:40px">
+  <span class="eyebrow">About BLAUDE</span>
+  <h1 style="margin-top:24px">Clear thinking. Careful craft. <em class="serif accent" style="font-style:italic">Useful technology.</em></h1>
+  <p class="lead" style="margin-top:28px">We believe effective digital experiences combine a clear purpose, thoughtful design and technology that works for the people using it.</p>
+ </div>
+ <div class="wrap section">
+  <div class="split">
+   <div class="split-media reveal"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=85" alt="Team at work"></div>
+   <div class="split-content reveal">
+    <span class="eyebrow">How we work</span>
+    <h2>Understand first. <em class="serif">Build with intention.</em></h2>
+    <p>Every business has different customers, goals and constraints. Our process starts with the context — then identifies a practical way forward that the whole team can get behind.</p>
+    <ul style="list-style:none;margin-top:24px;display:grid;gap:14px">
+     <li style="padding:14px 0;border-top:1px solid var(--line);display:flex;gap:14px;align-items:center"><span style="font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-size:18px">01</span><span>Understand the business need</span></li>
+     <li style="padding:14px 0;border-top:1px solid var(--line);display:flex;gap:14px;align-items:center"><span style="font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-size:18px">02</span><span>Define the direction</span></li>
+     <li style="padding:14px 0;border-top:1px solid var(--line);display:flex;gap:14px;align-items:center"><span style="font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-size:18px">03</span><span>Design around the user</span></li>
+     <li style="padding:14px 0;border-top:1px solid var(--line);display:flex;gap:14px;align-items:center"><span style="font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-size:18px">04</span><span>Build and review carefully</span></li>
+     <li style="padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:center"><span style="font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-size:18px">05</span><span>Clarify the next steps</span></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="wrap section">
+  <div class="section-head reveal">
+   <span class="eyebrow">Commitments</span>
+   <h2 style="margin-top:18px">A practical approach <em class="serif">to digital work.</em></h2>
+  </div>
+  <div class="services-grid reveal">
+   <div class="service"><span class="num">01</span><h3>Clarity</h3><p>Keep project goals, scope and communication understandable — for everyone involved.</p></div>
+   <div class="service"><span class="num">02</span><h3>Care</h3><p>Consider the details that shape a reliable, respectful user experience.</p></div>
+   <div class="service"><span class="num">03</span><h3>Progress</h3><p>Prioritise meaningful improvements over complexity for its own sake.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- CONTACT -->
+<section class="page" id="contact">
+ <div class="wrap hero" style="padding-bottom:40px">
+  <span class="eyebrow">Contact</span>
+  <h1 style="margin-top:24px">Let's build something <em class="serif accent" style="font-style:italic">meaningful.</em></h1>
+  <p class="lead" style="margin-top:28px">Tell us about your business, your idea or the digital challenge you want to solve. We usually respond within one working day.</p>
+ </div>
+ <div class="wrap section">
+  <div class="contact-grid">
+   <div class="contact-info reveal">
+    <span class="eyebrow">Start a conversation</span>
+    <h2>Good work starts with <em class="serif">a good conversation.</em></h2>
+    <p class="lead">Share a few details about what you have in mind. We'll use them to understand your enquiry and come back with a clear next step.</p>
+    <div style="margin-top:40px">
+     <div class="contact-block"><span class="lbl">Email</span><a href="mailto:hello.blaude@gmail.com">hello.blaude@gmail.com</a></div>
+     <div class="contact-block"><span class="lbl">Based in</span><a>Remote · Worldwide</a></div>
+     <div class="contact-block"><span class="lbl">Response time</span><a>Within 24 hours</a></div>
+    </div>
+    <p class="form-status show" style="margin-top:32px;background:var(--bg-soft);color:var(--muted)">Please do not include passwords, payment details or other sensitive information in your message.</p>
+   </div>
+   <form id="contactForm" class="reveal">
+    <div class="field-row">
+     <div class="field"><label for="name">Your name *</label><input id="name" name="name" autocomplete="name" required placeholder="Full name"></div>
+     <div class="field"><label for="email">Your email *</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@company.com"></div>
+    </div>
+    <div class="field-row">
+     <div class="field"><label for="companyName">Company / brand</label><input id="companyName" name="company" autocomplete="organization" placeholder="Your company"></div>
+     <div class="field"><label for="type">What can we help with?</label>
+      <select id="type" name="type">
+       <option>Website development</option>
+       <option>Landing page</option>
+       <option>UI/UX and design</option>
+       <option>Web application</option>
+       <option>Digital strategy</option>
+       <option>Business tools and automation</option>
+       <option>Partnership</option>
+       <option>Other enquiry</option>
+      </select>
+     </div>
+    </div>
+    <div class="field"><label for="budget">Project budget (optional)</label>
+     <select id="budget" name="budget">
+      <option>Prefer not to say</option>
+      <option>Under $5k</option>
+      <option>$5k – $15k</option>
+      <option>$15k – $40k</option>
+      <option>$40k+</option>
+     </select>
+    </div>
+    <div class="field"><label for="message">Tell us about your project *</label><textarea id="message" name="message" required placeholder="What are you trying to achieve? Any timeline or context helps."></textarea></div>
+    <button class="btn primary" type="submit" style="justify-self:start">Send enquiry <span class="arrow">↗</span></button>
+    <p class="form-note" id="formStatus">Your email app will open with the message prepared. You must press Send to deliver it.</p>
+    <div class="form-status" id="formSuccess">Thanks — your email app should open now. Review the prepared message and press Send to deliver it.</div>
+   </form>
+  </div>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <div class="wrap">
+  <div class="footer-top">
+   <div class="footer-brand">
+    <a class="brand" href="#home" onclick="showPage('home')">
+     <span class="brand-mark"><svg viewBox="0 0 160 160" aria-hidden="true"><use href="#blaude-mark"/></svg></span>
+     <span class="brand-text"><span class="brand-name">BLAUDE</span><span class="brand-sub">DIGITAL · TECHNOLOGY</span></span>
+    </a>
+    <p>An independent digital studio helping businesses build clearer brands, sharper websites and more useful technology.</p>
+   </div>
+   <div class="footer-col">
+    <h4>Studio</h4>
+    <ul>
+     <li><a href="#company" onclick="showPage('company')">Company</a></li>
+     <li><a href="#about" onclick="showPage('about')">About</a></li>
+     <li><a href="#innovation" onclick="showPage('innovation')">Innovation</a></li>
+    </ul>
+   </div>
+   <div class="footer-col">
+    <h4>Work</h4>
+    <ul>
+     <li><a href="#services" onclick="showPage('services')">Services</a></li>
+     <li><a href="#portfolio" onclick="showPage('portfolio')">Portfolio</a></li>
+     <li><a href="#contact" onclick="showPage('contact')">Contact</a></li>
+    </ul>
+   </div>
+   <div class="footer-col">
+    <h4>Connect</h4>
+    <ul>
+     <li><a href="mailto:hello.blaude@gmail.com">hello.blaude@gmail.com</a></li>
+     <li><a href="#contact" onclick="showPage('contact')">Start a project</a></li>
+    </ul>
+   </div>
+  </div>
+  <div class="footer-bottom">
+   <p>© <span id="year"></span> BLAUDE. All rights reserved.</p>
+   <div class="socials">
+    <a href="#" aria-label="Twitter"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+   </div>
+  </div>
+ </div>
+</footer>
+
+<script>
+// Page navigation
+function showPage(id){
+ const target=document.getElementById(id);
+ if(!target||!target.classList.contains("page"))return;
+ document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
+ document.querySelectorAll("[data-page]").forEach(a=>{
+  const active=a.dataset.page===id;
+  a.classList.toggle("active",active);
+  if(active)a.setAttribute("aria-current","page");
+  else a.removeAttribute("aria-current");
+ });
+ document.getElementById("navLinks").classList.remove("open");
+ document.getElementById("menuToggle").setAttribute("aria-expanded","false");
+ window.scrollTo({top:0,behavior:"smooth"});
+ // Re-run reveal observer for new page
+ setTimeout(observeReveals,50);
+}
+document.querySelectorAll("[data-page]").forEach(a=>a.addEventListener("click",e=>{
+ e.preventDefault();
+ showPage(a.dataset.page);
+ history.replaceState(null,"","#"+a.dataset.page);
+}));
+document.getElementById("menuToggle").addEventListener("click",()=>{
+ const nav=document.getElementById("navLinks");
+ const open=nav.classList.toggle("open");
+ document.getElementById("menuToggle").setAttribute("aria-expanded",String(open));
+});
+window.addEventListener("hashchange",()=>{
+ const id=location.hash.slice(1);
+ if(document.getElementById(id)?.classList.contains("page"))showPage(id);
+});
+document.getElementById("year").textContent=new Date().getFullYear();
+
+// Header scroll state
+const header=document.getElementById("siteHeader");
+const onScroll=()=>header.classList.toggle("scrolled",window.scrollY>20);
+window.addEventListener("scroll",onScroll,{passive:true});
+onScroll();
+
+// Reveal on scroll
+let revealObserver;
+function observeReveals(){
+ if(revealObserver)revealObserver.disconnect();
+ revealObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+   if(entry.isIntersecting){
+    entry.target.classList.add("in");
+    revealObserver.unobserve(entry.target);
+   }
+  });
+ },{threshold:.12,rootMargin:"0px 0px -60px 0px"});
+ document.querySelectorAll(".page.active .reveal:not(.in)").forEach(el=>revealObserver.observe(el));
+}
+observeReveals();
+
+// Contact form
+document.getElementById("contactForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const form=e.currentTarget;
+ if(!form.reportValidity())return;
+ const d=new FormData(form);
+ const subject="BLAUDE website enquiry — "+d.get("type");
+ const body=[
+  "New enquiry for BLAUDE","",
+  "Name: "+d.get("name"),
+  "Email: "+d.get("email"),
+  "Company: "+(d.get("company")||"Not provided"),
+  "Budget: "+(d.get("budget")||"Not provided"),
+  "Enquiry type: "+d.get("type"),"",
+  "Message:",d.get("message")
+ ].join("\n");
+ document.getElementById("formSuccess").classList.add("show");
+ window.location.href="mailto:hello.blaude@gmail.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+});
+
+// Initial hash
+if(location.hash&&document.getElementById(location.hash.slice(1))?.classList.contains("page")){
+ showPage(location.hash.slice(1));
+}
+</script>
+</body>
+</html>
